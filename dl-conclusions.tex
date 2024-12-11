@@ -115,7 +115,19 @@ One challenge that we did not expect from the beginning was the categorical natu
 
 \subsection{Feature Importance}
 
+As we can see through Shapley feature importance in Fig. \ref{fig:feature-importance}, the domestic keyword is a very strong indicator of crime type. This is likely due to the specific types of crime that can occur in a domestic context, such as assault and battery. However, this keyword's usefulness mainly pertains to a specific subset of crime, so we need to consider other features as well. 
+Location-related features were the next most important, which also makes sense. Certain types of crime, like robbery, are likelier in the hotspots like Jeweler's Row, as well as in locations described as some type of store. 
+As hours were one-hot encoded, they are treated as separate features. This allows us to see which hours were able to provide more predictive power, and we realize a trend that hours around midnight (that is, late nights and early mornings) are more important. This is likely due to increased crime data points at these hours and that certain more serious crimes are likelier at night. 
 \subsection{Performance}
+After selection of optimal hyperparameters, we saw a roughly 33.25 percent accuracy rate with our deep learning model. This is a substantial accuracy, considering the noisy nature of crime data and the various classes we are trying to predict. As a baseline comparison, a logistic regression model with equally weighted classes provided an accuracy of only 2-3 percent (the unweighted model predicted theft or battery in all cases, leading to inflated accuracy of ~25 percent on the test set). 
+The Shapley plot also underlines the sophisticated use of inputs and subsequent expressivity of the model. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{deep-learning-im/feature-importance.png}
+    \caption{Feature Importance Plot Ordered by Shapley Value.}
+    \label{fig:feature-importance}
+\end{figure}
 
 % Comparison to baseline 
 
